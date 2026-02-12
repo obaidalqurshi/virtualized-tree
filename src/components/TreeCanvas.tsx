@@ -50,7 +50,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       ref={svgRef}
       width="100%"
       height="100vh"
-      style={{ background: "#0b1020" }}
+      style={{ background: "gray" }}
     >
       <g ref={gRef}>
         <TreeLinks links={links} />

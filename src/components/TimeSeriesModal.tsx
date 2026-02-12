@@ -16,7 +16,7 @@ export function TimeSeriesModal({
         top: 0,
         width: 500,
         height: "100%",
-        background: "#020617",
+        background: "white",
         padding: 16
       }}
     >

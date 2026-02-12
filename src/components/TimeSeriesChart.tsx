@@ -1,6 +1,6 @@
 import * as d3 from "d3"
 import { useEffect, useRef } from "react"
-import type { TimePoint } from "../types/tree"
+import { TimePoint } from "../types/tree"
 
 export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
   const ref = useRef<SVGSVGElement | null>(null)
@@ -35,7 +35,7 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
     svg.append("path")
       .datum(parsed)
       .attr("fill", "none")
-      .attr("stroke", "#38bdf8")
+      .attr("stroke", "black")
       .attr("stroke-width", 2)
       .attr("d", line)
 
