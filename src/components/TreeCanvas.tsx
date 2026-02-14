@@ -23,7 +23,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     nodeSize: [40, 160]
   })
 
-  // Zoom / pan
   useEffect(() => {
     if (!svgRef.current || !gRef.current) return
 
@@ -31,7 +30,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       .scaleExtent([0.2, 2])
       .on("zoom", (event) => {
         d3.select(gRef.current!)
-          .attr("transform", event.transform.toString())
+          .attr("transform", event.transform)
       })
 
     d3.select(svgRef.current).call(zoom)
@@ -49,9 +48,10 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     <svg
       ref={svgRef}
       width="100%"
-      height="100vh"
+      height="70vh"
       style={{ background: "gray" }}
     >
+      <g transform="translate(500, 300)">
       <g ref={gRef}>
         <TreeLinks links={links} />
         {nodes.map(node => (
@@ -63,6 +63,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
             onSelect={onSelectNode}
           />
         ))}
+      </g>
       </g>
     </svg>
   )

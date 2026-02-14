@@ -1,10 +1,10 @@
-import type { PositionedNode } from "../types/tree"
+import type { PositionedNode } from "../types/tree";
 
-interface Props {
-  node: PositionedNode
-  isExpanded: boolean
-  onToggle: (id: string) => void
-  onSelect: (data: PositionedNode["data"]) => void
+interface Props{
+  node: PositionedNode,
+  isExpanded: boolean,
+  onToggle: (id: string) => void;
+  onSelect: (data: PositionedNode["data"]) => void;
 }
 
 export function TreeNode({
@@ -12,38 +12,45 @@ export function TreeNode({
   isExpanded,
   onToggle,
   onSelect
-}: Props) {
-  return (
-    <g transform={`translate(${node.y},${node.x})`}>
-      {/* Expand / collapse */}
-      <circle
+}: Props){
+  return(
+    <g transform={`translate(${node.y}, ${node.x})`} >
+      <circle 
         r={6}
-        fill={isExpanded ? "#4ade80" : "#f87171"}
-        onClick={(e) => {
+        fill={isExpanded ? 'green' : 'red'}
+        onClick={(e)=>{
           e.stopPropagation()
           onToggle(node.id)
         }}
-        cursor="pointer"
-      />
+        cursor='pointer' />
 
-      <rect
+        <rect 
         x={10}
         y={-12}
         width={120}
         height={24}
         rx={4}
-        fill="#1e293b"
-        onClick={() => onSelect(node.data)}
-      />
+        fill="lightblue"
+        onClick={()=> onSelect(node.data)}
+        />
 
-      <text
+        <text 
         x={16}
         y={4}
-        fill="#e5e7eb"
-        fontSize={12}
-      >
+        fill="black"
+        fontSize={10}
+        >
+          {node.name}
+          
+        </text>
+        <title>
         {node.name}
-      </text>
+        {"\n"}
+        ID: {node.id}
+        {"\n"}
+      </title>
+
+
     </g>
   )
 }
