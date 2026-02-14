@@ -5,7 +5,7 @@ import CloseIcon from '@mui/icons-material/Close'
 import {motion} from 'motion/react'
 
 
-const MotionBox = motion(Box);
+const MotionBox = motion.create(Box);
 
 
 export function TimeSeriesModal({
