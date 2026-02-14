@@ -48,7 +48,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     <svg
       ref={svgRef}
       width="100%"
-      height="70vh"
+      height="100vh"
       style={{ background: "gray" }}
     >
       <g transform="translate(500, 300)">

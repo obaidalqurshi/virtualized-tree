@@ -11,7 +11,6 @@ export default function App(){
     <TreeCanvas data={treeData} onSelectNode={setSelectedNode} />
     <AnimatePresence>
     {selectedNode &&(
-      
       <TimeSeriesModal node={selectedNode} onClose={()=> setSelectedNode(null)} />
     )}
 
