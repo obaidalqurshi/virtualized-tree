@@ -1,6 +1,6 @@
 import * as d3 from 'd3'
 import { useEffect, useRef } from 'react'
-import { TimePoint } from '../types/tree'
+import type { TimePoint } from '../types/tree'
 
 export function TimeSeriesChart({data}: {data: TimePoint[]}){
   const ref = useRef<SVGSVGElement | null>(null)
