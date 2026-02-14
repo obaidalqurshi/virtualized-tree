@@ -13,8 +13,6 @@ interface Props {
 export function TreeCanvas({ data, onSelectNode }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null)
   const gRef = useRef<SVGGElement | null>(null)
-  const  transFormRef = useRef<d3.ZoomTransform>(d3.zoomIdentity);
-  const viewportHieght = window.innerHeight
 
 
   const [expandedIds, setExpandedIds] = useState<Set<string>>(
@@ -32,7 +30,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.2, 2])
       .on("zoom", (event) => {
-        transFormRef.current = event.transform;
         d3.select(gRef.current!)
           .attr("transform", event.transform)
       })
