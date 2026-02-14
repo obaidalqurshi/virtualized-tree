@@ -69,7 +69,7 @@ useEffect(() => {
 
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
-      .scaleExtent([0.2, 2])
+      .scaleExtent([0.2, 4])
       .on("zoom", (event) => {
         transformRef.current = event.transform
         d3.select(gRef.current!).attr(
@@ -118,24 +118,29 @@ useEffect(() => {
       const next = new Set(prev)
       const isExpanding = !next.has(id)
 
-      isExpanding ? next.add(id) : next.delete(id)
+      if(isExpanding){
+        next.add(id)
+      }else{
+        next.delete(id)
+      }
 
-      if (isExpanding) {
-        requestAnimationFrame(() => {
           requestAnimationFrame(() => {
             if (!svgRef.current || !zoomRef.current) return
 
+            if(isExpanding){
             const bounds = getSubtreeBounds(nodes, id)
             const target = fitBounds(bounds, viewport)
 
             d3.select(svgRef.current)
               .transition()
               .duration(600)
+              .ease(d3.easeCubicOut)
               .call(zoomRef.current!.transform, target)
-          })
+            transformRef.current = target
+          }
+          setTick((t) => t + 1)
         })
-      }
-
+        
       return next
     })
   }
