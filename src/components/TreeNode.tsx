@@ -13,6 +13,10 @@ export function TreeNode({
   onToggle,
   onSelect
 }: Props){
+
+  const mainRadius = 24
+  const toggleRadius = 10
+  const gap = 6
   return(
     <g transform={`translate(${node.x}, ${node.y})`} >
       <circle 
@@ -23,23 +27,31 @@ export function TreeNode({
         }}
         cursor='pointer'/>
           
-        {!!node.data.children?.length &&(
-                  <text 
-                  x={0}
-                  y={24}
-                  fill="white"
-                  fontSize={15}
-                  cursor='pointer'
-                  onClick={()=>{
-                    onToggle(node.id)
-                  }}
-                  textAnchor="middle"
-                  dominantBaseline="middle"
-                  >
-                     {isExpanded ? "-" : "+"}
+          {!!node.data.children?.length && (
+        <g
+          transform={`translate(0, ${mainRadius + gap + toggleRadius})`}
+          cursor="pointer"
+          onClick={() => onToggle(node.id)}
+        >
+          <circle
+            r={toggleRadius}
+            fill="#333"
+          />
 
-                  </text>
-        )}
+          <text
+            x={0}
+            y={0}
+            textAnchor="middle"
+            dominantBaseline="middle"
+            fill="white"
+            fontSize={14}
+            fontWeight="bold"
+            pointerEvents="none"
+          >
+            {isExpanded ? "−" : "+"}
+          </text>
+        </g>
+      )}
   <text
     x={0}
     y={0}
