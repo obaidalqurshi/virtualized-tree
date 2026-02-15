@@ -1,0 +1,571 @@
+{
+    "id": "root",
+    "name": "Total Sales",
+    "timeSeries": [
+      { "date": "2024-01-01", "value": 1040 },
+      { "date": "2024-01-02", "value": 1071 },
+      { "date": "2024-01-03", "value": 1104 },
+      { "date": "2024-01-04", "value": 1136 },
+      { "date": "2024-01-05", "value": 1168 },
+      { "date": "2024-01-06", "value": 1200 },
+      { "date": "2024-01-07", "value": 1232 },
+      { "date": "2024-01-08", "value": 1264 },
+      { "date": "2024-01-09", "value": 1296 },
+      { "date": "2024-01-10", "value": 1327 }
+    ],
+    "children": [
+      {
+        "id": "elec",
+        "name": "Electronics",
+        "timeSeries": [
+          { "date": "2024-01-01", "value": 290 },
+          { "date": "2024-01-02", "value": 300 },
+          { "date": "2024-01-03", "value": 312 },
+          { "date": "2024-01-04", "value": 323 },
+          { "date": "2024-01-05", "value": 334 },
+          { "date": "2024-01-06", "value": 345 },
+          { "date": "2024-01-07", "value": 356 },
+          { "date": "2024-01-08", "value": 367 },
+          { "date": "2024-01-09", "value": 378 },
+          { "date": "2024-01-10", "value": 388 }
+        ],
+        "children": [
+          {
+            "id": "comp",
+            "name": "Computers",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 100 },
+              { "date": "2024-01-02", "value": 104 },
+              { "date": "2024-01-03", "value": 109 },
+              { "date": "2024-01-04", "value": 114 },
+              { "date": "2024-01-05", "value": 118 },
+              { "date": "2024-01-06", "value": 123 },
+              { "date": "2024-01-07", "value": 127 },
+              { "date": "2024-01-08", "value": 132 },
+              { "date": "2024-01-09", "value": 136 },
+              { "date": "2024-01-10", "value": 140 }
+            ],
+            "children": [
+              {
+                "id": "laptops",
+                "name": "Laptops",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 50 },
+                  { "date": "2024-01-02", "value": 52 },
+                  { "date": "2024-01-03", "value": 55 },
+                  { "date": "2024-01-04", "value": 58 },
+                  { "date": "2024-01-05", "value": 60 },
+                  { "date": "2024-01-06", "value": 63 },
+                  { "date": "2024-01-07", "value": 65 },
+                  { "date": "2024-01-08", "value": 68 },
+                  { "date": "2024-01-09", "value": 70 },
+                  { "date": "2024-01-10", "value": 72 }
+                ],
+                "children": []
+              },
+              {
+                "id": "desktops",
+                "name": "Desktops",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 30 },
+                  { "date": "2024-01-02", "value": 31 },
+                  { "date": "2024-01-03", "value": 32 },
+                  { "date": "2024-01-04", "value": 33 },
+                  { "date": "2024-01-05", "value": 34 },
+                  { "date": "2024-01-06", "value": 35 },
+                  { "date": "2024-01-07", "value": 36 },
+                  { "date": "2024-01-08", "value": 37 },
+                  { "date": "2024-01-09", "value": 38 },
+                  { "date": "2024-01-10", "value": 39 }
+                ],
+                "children": []
+              },
+              {
+                "id": "tablets",
+                "name": "Tablets",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 20 },
+                  { "date": "2024-01-02", "value": 21 },
+                  { "date": "2024-01-03", "value": 22 },
+                  { "date": "2024-01-04", "value": 23 },
+                  { "date": "2024-01-05", "value": 24 },
+                  { "date": "2024-01-06", "value": 25 },
+                  { "date": "2024-01-07", "value": 26 },
+                  { "date": "2024-01-08", "value": 27 },
+                  { "date": "2024-01-09", "value": 28 },
+                  { "date": "2024-01-10", "value": 29 }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "phones",
+            "name": "Smartphones",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 150 },
+              { "date": "2024-01-02", "value": 154 },
+              { "date": "2024-01-03", "value": 159 },
+              { "date": "2024-01-04", "value": 163 },
+              { "date": "2024-01-05", "value": 168 },
+              { "date": "2024-01-06", "value": 172 },
+              { "date": "2024-01-07", "value": 177 },
+              { "date": "2024-01-08", "value": 181 },
+              { "date": "2024-01-09", "value": 186 },
+              { "date": "2024-01-10", "value": 190 }
+            ],
+            "children": [
+              {
+                "id": "iphone",
+                "name": "iPhone",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 80 },
+                  { "date": "2024-01-02", "value": 82 },
+                  { "date": "2024-01-03", "value": 85 },
+                  { "date": "2024-01-04", "value": 87 },
+                  { "date": "2024-01-05", "value": 90 },
+                  { "date": "2024-01-06", "value": 92 },
+                  { "date": "2024-01-07", "value": 95 },
+                  { "date": "2024-01-08", "value": 97 },
+                  { "date": "2024-01-09", "value": 100 },
+                  { "date": "2024-01-10", "value": 102 }
+                ],
+                "children": []
+              },
+              {
+                "id": "android",
+                "name": "Android",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 70 },
+                  { "date": "2024-01-02", "value": 72 },
+                  { "date": "2024-01-03", "value": 74 },
+                  { "date": "2024-01-04", "value": 76 },
+                  { "date": "2024-01-05", "value": 78 },
+                  { "date": "2024-01-06", "value": 80 },
+                  { "date": "2024-01-07", "value": 82 },
+                  { "date": "2024-01-08", "value": 84 },
+                  { "date": "2024-01-09", "value": 86 },
+                  { "date": "2024-01-10", "value": 88 }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "acc",
+            "name": "Accessories",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 40 },
+              { "date": "2024-01-02", "value": 42 },
+              { "date": "2024-01-03", "value": 44 },
+              { "date": "2024-01-04", "value": 46 },
+              { "date": "2024-01-05", "value": 48 },
+              { "date": "2024-01-06", "value": 50 },
+              { "date": "2024-01-07", "value": 52 },
+              { "date": "2024-01-08", "value": 54 },
+              { "date": "2024-01-09", "value": 56 },
+              { "date": "2024-01-10", "value": 58 }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "cloth",
+        "name": "Clothing",
+        "timeSeries": [
+          { "date": "2024-01-01", "value": 260 },
+          { "date": "2024-01-02", "value": 269 },
+          { "date": "2024-01-03", "value": 278 },
+          { "date": "2024-01-04", "value": 287 },
+          { "date": "2024-01-05", "value": 296 },
+          { "date": "2024-01-06", "value": 305 },
+          { "date": "2024-01-07", "value": 314 },
+          { "date": "2024-01-08", "value": 323 },
+          { "date": "2024-01-09", "value": 332 },
+          { "date": "2024-01-10", "value": 341 }
+        ],
+        "children": [
+          {
+            "id": "mens",
+            "name": "Men's Clothing",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 90 },
+              { "date": "2024-01-02", "value": 93 },
+              { "date": "2024-01-03", "value": 96 },
+              { "date": "2024-01-04", "value": 99 },
+              { "date": "2024-01-05", "value": 102 },
+              { "date": "2024-01-06", "value": 105 },
+              { "date": "2024-01-07", "value": 108 },
+              { "date": "2024-01-08", "value": 111 },
+              { "date": "2024-01-09", "value": 114 },
+              { "date": "2024-01-10", "value": 117 }
+            ],
+            "children": [
+              {
+                "id": "mens-shirts",
+                "name": "Shirts",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 40 },
+                  { "date": "2024-01-02", "value": 41 },
+                  { "date": "2024-01-03", "value": 42 },
+                  { "date": "2024-01-04", "value": 43 },
+                  { "date": "2024-01-05", "value": 44 },
+                  { "date": "2024-01-06", "value": 45 },
+                  { "date": "2024-01-07", "value": 46 },
+                  { "date": "2024-01-08", "value": 47 },
+                  { "date": "2024-01-09", "value": 48 },
+                  { "date": "2024-01-10", "value": 49 }
+                ],
+                "children": []
+              },
+              {
+                "id": "mens-pants",
+                "name": "Pants",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 30 },
+                  { "date": "2024-01-02", "value": 31 },
+                  { "date": "2024-01-03", "value": 32 },
+                  { "date": "2024-01-04", "value": 33 },
+                  { "date": "2024-01-05", "value": 34 },
+                  { "date": "2024-01-06", "value": 35 },
+                  { "date": "2024-01-07", "value": 36 },
+                  { "date": "2024-01-08", "value": 37 },
+                  { "date": "2024-01-09", "value": 38 },
+                  { "date": "2024-01-10", "value": 39 }
+                ],
+                "children": []
+              },
+              {
+                "id": "mens-jackets",
+                "name": "Jackets",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 20 },
+                  { "date": "2024-01-02", "value": 21 },
+                  { "date": "2024-01-03", "value": 22 },
+                  { "date": "2024-01-04", "value": 23 },
+                  { "date": "2024-01-05", "value": 24 },
+                  { "date": "2024-01-06", "value": 25 },
+                  { "date": "2024-01-07", "value": 26 },
+                  { "date": "2024-01-08", "value": 27 },
+                  { "date": "2024-01-09", "value": 28 },
+                  { "date": "2024-01-10", "value": 29 }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "womens",
+            "name": "Women's Clothing",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 110 },
+              { "date": "2024-01-02", "value": 114 },
+              { "date": "2024-01-03", "value": 118 },
+              { "date": "2024-01-04", "value": 122 },
+              { "date": "2024-01-05", "value": 126 },
+              { "date": "2024-01-06", "value": 130 },
+              { "date": "2024-01-07", "value": 134 },
+              { "date": "2024-01-08", "value": 138 },
+              { "date": "2024-01-09", "value": 142 },
+              { "date": "2024-01-10", "value": 146 }
+            ],
+            "children": [
+              {
+                "id": "womens-dresses",
+                "name": "Dresses",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 50 },
+                  { "date": "2024-01-02", "value": 52 },
+                  { "date": "2024-01-03", "value": 54 },
+                  { "date": "2024-01-04", "value": 56 },
+                  { "date": "2024-01-05", "value": 58 },
+                  { "date": "2024-01-06", "value": 60 },
+                  { "date": "2024-01-07", "value": 62 },
+                  { "date": "2024-01-08", "value": 64 },
+                  { "date": "2024-01-09", "value": 66 },
+                  { "date": "2024-01-10", "value": 68 }
+                ],
+                "children": []
+              },
+              {
+                "id": "womens-tops",
+                "name": "Tops",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 35 },
+                  { "date": "2024-01-02", "value": 36 },
+                  { "date": "2024-01-03", "value": 37 },
+                  { "date": "2024-01-04", "value": 38 },
+                  { "date": "2024-01-05", "value": 39 },
+                  { "date": "2024-01-06", "value": 40 },
+                  { "date": "2024-01-07", "value": 41 },
+                  { "date": "2024-01-08", "value": 42 },
+                  { "date": "2024-01-09", "value": 43 },
+                  { "date": "2024-01-10", "value": 44 }
+                ],
+                "children": []
+              },
+              {
+                "id": "womens-skirts",
+                "name": "Skirts",
+                "timeSeries": [
+                  { "date": "2024-01-01", "value": 25 },
+                  { "date": "2024-01-02", "value": 26 },
+                  { "date": "2024-01-03", "value": 27 },
+                  { "date": "2024-01-04", "value": 28 },
+                  { "date": "2024-01-05", "value": 29 },
+                  { "date": "2024-01-06", "value": 30 },
+                  { "date": "2024-01-07", "value": 31 },
+                  { "date": "2024-01-08", "value": 32 },
+                  { "date": "2024-01-09", "value": 33 },
+                  { "date": "2024-01-10", "value": 34 }
+                ],
+                "children": []
+              }
+            ]
+          },
+          {
+            "id": "kids",
+            "name": "Children's Clothing",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 60 },
+              { "date": "2024-01-02", "value": 62 },
+              { "date": "2024-01-03", "value": 64 },
+              { "date": "2024-01-04", "value": 66 },
+              { "date": "2024-01-05", "value": 68 },
+              { "date": "2024-01-06", "value": 70 },
+              { "date": "2024-01-07", "value": 72 },
+              { "date": "2024-01-08", "value": 74 },
+              { "date": "2024-01-09", "value": 76 },
+              { "date": "2024-01-10", "value": 78 }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "home",
+        "name": "Home & Garden",
+        "timeSeries": [
+          { "date": "2024-01-01", "value": 190 },
+          { "date": "2024-01-02", "value": 195 },
+          { "date": "2024-01-03", "value": 200 },
+          { "date": "2024-01-04", "value": 205 },
+          { "date": "2024-01-05", "value": 210 },
+          { "date": "2024-01-06", "value": 215 },
+          { "date": "2024-01-07", "value": 220 },
+          { "date": "2024-01-08", "value": 225 },
+          { "date": "2024-01-09", "value": 230 },
+          { "date": "2024-01-10", "value": 235 }
+        ],
+        "children": [
+          {
+            "id": "furniture",
+            "name": "Furniture",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 70 },
+              { "date": "2024-01-02", "value": 72 },
+              { "date": "2024-01-03", "value": 74 },
+              { "date": "2024-01-04", "value": 76 },
+              { "date": "2024-01-05", "value": 78 },
+              { "date": "2024-01-06", "value": 80 },
+              { "date": "2024-01-07", "value": 82 },
+              { "date": "2024-01-08", "value": 84 },
+              { "date": "2024-01-09", "value": 86 },
+              { "date": "2024-01-10", "value": 88 }
+            ],
+            "children": []
+          },
+          {
+            "id": "decor",
+            "name": "Decor",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 40 },
+              { "date": "2024-01-02", "value": 41 },
+              { "date": "2024-01-03", "value": 42 },
+              { "date": "2024-01-04", "value": 43 },
+              { "date": "2024-01-05", "value": 44 },
+              { "date": "2024-01-06", "value": 45 },
+              { "date": "2024-01-07", "value": 46 },
+              { "date": "2024-01-08", "value": 47 },
+              { "date": "2024-01-09", "value": 48 },
+              { "date": "2024-01-10", "value": 49 }
+            ],
+            "children": []
+          },
+          {
+            "id": "tools",
+            "name": "Tools",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 50 },
+              { "date": "2024-01-02", "value": 51 },
+              { "date": "2024-01-03", "value": 52 },
+              { "date": "2024-01-04", "value": 53 },
+              { "date": "2024-01-05", "value": 54 },
+              { "date": "2024-01-06", "value": 55 },
+              { "date": "2024-01-07", "value": 56 },
+              { "date": "2024-01-08", "value": 57 },
+              { "date": "2024-01-09", "value": 58 },
+              { "date": "2024-01-10", "value": 59 }
+            ],
+            "children": []
+          },
+          {
+            "id": "garden",
+            "name": "Garden",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 30 },
+              { "date": "2024-01-02", "value": 31 },
+              { "date": "2024-01-03", "value": 32 },
+              { "date": "2024-01-04", "value": 33 },
+              { "date": "2024-01-05", "value": 34 },
+              { "date": "2024-01-06", "value": 35 },
+              { "date": "2024-01-07", "value": 36 },
+              { "date": "2024-01-08", "value": 37 },
+              { "date": "2024-01-09", "value": 38 },
+              { "date": "2024-01-10", "value": 39 }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "sports",
+        "name": "Sports",
+        "timeSeries": [
+          { "date": "2024-01-01", "value": 180 },
+          { "date": "2024-01-02", "value": 184 },
+          { "date": "2024-01-03", "value": 188 },
+          { "date": "2024-01-04", "value": 192 },
+          { "date": "2024-01-05", "value": 196 },
+          { "date": "2024-01-06", "value": 200 },
+          { "date": "2024-01-07", "value": 204 },
+          { "date": "2024-01-08", "value": 208 },
+          { "date": "2024-01-09", "value": 212 },
+          { "date": "2024-01-10", "value": 216 }
+        ],
+        "children": [
+          {
+            "id": "fitness",
+            "name": "Fitness Equipment",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 80 },
+              { "date": "2024-01-02", "value": 82 },
+              { "date": "2024-01-03", "value": 84 },
+              { "date": "2024-01-04", "value": 86 },
+              { "date": "2024-01-05", "value": 88 },
+              { "date": "2024-01-06", "value": 90 },
+              { "date": "2024-01-07", "value": 92 },
+              { "date": "2024-01-08", "value": 94 },
+              { "date": "2024-01-09", "value": 96 },
+              { "date": "2024-01-10", "value": 98 }
+            ],
+            "children": []
+          },
+          {
+            "id": "outdoor",
+            "name": "Outdoor Recreation",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 60 },
+              { "date": "2024-01-02", "value": 61 },
+              { "date": "2024-01-03", "value": 62 },
+              { "date": "2024-01-04", "value": 63 },
+              { "date": "2024-01-05", "value": 64 },
+              { "date": "2024-01-06", "value": 65 },
+              { "date": "2024-01-07", "value": 66 },
+              { "date": "2024-01-08", "value": 67 },
+              { "date": "2024-01-09", "value": 68 },
+              { "date": "2024-01-10", "value": 69 }
+            ],
+            "children": []
+          },
+          {
+            "id": "teamsports",
+            "name": "Team Sports",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 40 },
+              { "date": "2024-01-02", "value": 41 },
+              { "date": "2024-01-03", "value": 42 },
+              { "date": "2024-01-04", "value": 43 },
+              { "date": "2024-01-05", "value": 44 },
+              { "date": "2024-01-06", "value": 45 },
+              { "date": "2024-01-07", "value": 46 },
+              { "date": "2024-01-08", "value": 47 },
+              { "date": "2024-01-09", "value": 48 },
+              { "date": "2024-01-10", "value": 49 }
+            ],
+            "children": []
+          }
+        ]
+      },
+      {
+        "id": "books",
+        "name": "Books",
+        "timeSeries": [
+          { "date": "2024-01-01", "value": 120 },
+          { "date": "2024-01-02", "value": 123 },
+          { "date": "2024-01-03", "value": 126 },
+          { "date": "2024-01-04", "value": 129 },
+          { "date": "2024-01-05", "value": 132 },
+          { "date": "2024-01-06", "value": 135 },
+          { "date": "2024-01-07", "value": 138 },
+          { "date": "2024-01-08", "value": 141 },
+          { "date": "2024-01-09", "value": 144 },
+          { "date": "2024-01-10", "value": 147 }
+        ],
+        "children": [
+          {
+            "id": "fiction",
+            "name": "Fiction",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 50 },
+              { "date": "2024-01-02", "value": 51 },
+              { "date": "2024-01-03", "value": 52 },
+              { "date": "2024-01-04", "value": 53 },
+              { "date": "2024-01-05", "value": 54 },
+              { "date": "2024-01-06", "value": 55 },
+              { "date": "2024-01-07", "value": 56 },
+              { "date": "2024-01-08", "value": 57 },
+              { "date": "2024-01-09", "value": 58 },
+              { "date": "2024-01-10", "value": 59 }
+            ],
+            "children": []
+          },
+          {
+            "id": "nonfiction",
+            "name": "Non-Fiction",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 40 },
+              { "date": "2024-01-02", "value": 41 },
+              { "date": "2024-01-03", "value": 42 },
+              { "date": "2024-01-04", "value": 43 },
+              { "date": "2024-01-05", "value": 44 },
+              { "date": "2024-01-06", "value": 45 },
+              { "date": "2024-01-07", "value": 46 },
+              { "date": "2024-01-08", "value": 47 },
+              { "date": "2024-01-09", "value": 48 },
+              { "date": "2024-01-10", "value": 49 }
+            ],
+            "children": []
+          },
+          {
+            "id": "kidsbooks",
+            "name": "Children's Books",
+            "timeSeries": [
+              { "date": "2024-01-01", "value": 30 },
+              { "date": "2024-01-02", "value": 31 },
+              { "date": "2024-01-03", "value": 32 },
+              { "date": "2024-01-04", "value": 33 },
+              { "date": "2024-01-05", "value": 34 },
+              { "date": "2024-01-06", "value": 35 },
+              { "date": "2024-01-07", "value": 36 },
+              { "date": "2024-01-08", "value": 37 },
+              { "date": "2024-01-09", "value": 38 },
+              { "date": "2024-01-10", "value": 39 }
+            ],
+            "children": []
+          }
+        ]
+      }
+    ]
+  }
