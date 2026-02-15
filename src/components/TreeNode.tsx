@@ -14,35 +14,43 @@ export function TreeNode({
   onSelect
 }: Props){
   return(
-    <g transform={`translate(${node.y}, ${node.x})`} >
+    <g transform={`translate(${node.x}, ${node.y})`} >
       <circle 
-        r={6}
+        r={24}
         fill={isExpanded ? 'green' : 'red'}
-        onClick={(e)=>{
-          e.stopPropagation()
-          onToggle(node.id)
+        onClick={()=> {
+          onSelect(node.data)
         }}
-        cursor='pointer' />
-
-        <rect 
-        x={10}
-        y={-12}
-        width={120}
-        height={24}
-        rx={4}
-        fill="lightblue"
-        onClick={()=> onSelect(node.data)}
-        />
-
-        <text 
-        x={16}
-        y={4}
-        fill="black"
-        fontSize={10}
-        >
-          {node.name}
+        cursor='pointer'/>
           
-        </text>
+        {!!node.data.children?.length &&(
+                  <text 
+                  x={0}
+                  y={24}
+                  fill="white"
+                  fontSize={15}
+                  cursor='pointer'
+                  onClick={()=>{
+                    onToggle(node.id)
+                  }}
+                  textAnchor="middle"
+                  dominantBaseline="middle"
+                  >
+                     {isExpanded ? "-" : "+"}
+
+                  </text>
+        )}
+  <text
+    x={0}
+    y={0}
+    textAnchor="middle"
+    dominantBaseline="middle"
+    fill="white"
+    fontSize={8}
+    pointerEvents="none"
+  >
+    {node.name}
+  </text>
         <title>
         {node.name}
         {"\n"}

@@ -1,5 +1,5 @@
 import * as d3 from "d3"
-import { useEffect, useMemo, useRef, useState } from "react"
+import { useEffect, useRef, useState } from "react"
 import { useTreeLayout } from "../hooks/useTreeLayout"
 import type { TreeNodeData, PositionedNode } from "../types/tree"
 import { TreeNode } from "./TreeNode"
@@ -16,39 +16,39 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
   const transformRef = useRef<d3.ZoomTransform>(d3.zoomIdentity)
 
-  const [tick, setTick] = useState(0)
+  const [, setTick] = useState(0)
   const [viewport, setViewport] = useState({ width: 0, height: 0 })
 
   const [expandedIds, setExpandedIds] = useState<Set<string>>(
     () => new Set([data.id])
   )
 
+  // Vertical layout: nodeSize [x-separation between siblings, y-separation between levels]
   const { nodes, links } = useTreeLayout(data, {
     expandedIds,
-    nodeSize: [40, 160],
+    nodeSize: [160, 100],
   })
 
+  useEffect(() => {
+    if (
+      !svgRef.current ||
+      !zoomRef.current ||
+      viewport.width === 0 ||
+      viewport.height === 0 ||
+      nodes.length === 0
+    ) return
 
+    const bounds = getSubtreeBounds(nodes, data.id)
+    const target = fitBounds(bounds, viewport)
 
-useEffect(() => {
-  if (
-    !svgRef.current ||
-    !zoomRef.current ||
-    viewport.width === 0 ||
-    viewport.height === 0 ||
-    nodes.length === 0
-  ) return
+    d3.select(svgRef.current)
+      .call(zoomRef.current.transform, target)
 
-  const bounds = getSubtreeBounds(nodes, data.id)
-  const target = fitBounds(bounds, viewport)
-  d3.select(svgRef.current)
-    .call(zoomRef.current.transform, target)
-  transformRef.current = target
-  setTick(t => t + 1)
+    transformRef.current = target
+    setTick(t => t + 1)
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-}, [viewport.width, viewport.height, nodes.length])
-
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewport.width, viewport.height, nodes.length])
 
   useEffect(() => {
     if (!svgRef.current) return
@@ -63,7 +63,6 @@ useEffect(() => {
     return () => window.removeEventListener("resize", update)
   }, [])
 
-
   useEffect(() => {
     if (!svgRef.current || !gRef.current) return
 
@@ -76,71 +75,43 @@ useEffect(() => {
           "transform",
           event.transform.toString()
         )
-        setTick((t) => t + 1)
+        setTick(t => t + 1)
       })
 
     zoomRef.current = zoom
     d3.select(svgRef.current).call(zoom)
   }, [])
 
-
-
-  const visibleNodes = useMemo(() => {
-    const { y, k } = transformRef.current
-    const top = -y / k
-    const bottom = top + viewport.height / k
-    const buffer = 200
-
-    return nodes.filter(
-      (n) => n.x >= top - buffer && n.x <= bottom + buffer
-    )
-  }, [nodes, viewport])
-
-  const visibleNodeIds = useMemo(
-    () => new Set(visibleNodes.map((n) => n.id)),
-    [visibleNodes]
-  )
-
-  const visibleLinks = useMemo(
-    () =>
-      links.filter(
-        (l) =>
-          visibleNodeIds.has(l.source.data.id) &&
-          visibleNodeIds.has(l.target.data.id)
-      ),
-    [links, visibleNodeIds]
-  )
-
-
-
   const toggleNode = (id: string) => {
-    setExpandedIds((prev) => {
+    setExpandedIds(prev => {
       const next = new Set(prev)
       const isExpanding = !next.has(id)
 
-      if(isExpanding){
+      if (isExpanding) {
         next.add(id)
-      }else{
+      } else {
         next.delete(id)
       }
 
-          requestAnimationFrame(() => {
-            if (!svgRef.current || !zoomRef.current) return
+      requestAnimationFrame(() => {
+        if (!svgRef.current || !zoomRef.current) return
 
-            if(isExpanding){
-            const bounds = getSubtreeBounds(nodes, id)
-            const target = fitBounds(bounds, viewport)
+        if (isExpanding) {
+          const bounds = getSubtreeBounds(nodes, id)
+          const target = fitBounds(bounds, viewport)
 
-            d3.select(svgRef.current)
-              .transition()
-              .duration(600)
-              .ease(d3.easeCubicOut)
-              .call(zoomRef.current!.transform, target)
-            transformRef.current = target
-          }
-          setTick((t) => t + 1)
-        })
-        
+          d3.select(svgRef.current)
+            .transition()
+            .duration(600)
+            .ease(d3.easeCubicOut)
+            .call(zoomRef.current!.transform, target)
+
+          transformRef.current = target
+        }
+
+        setTick(t => t + 1)
+      })
+
       return next
     })
   }
@@ -150,11 +121,11 @@ useEffect(() => {
       ref={svgRef}
       width="100%"
       height="100vh"
-      style={{ background: "gray" }}
+      style={{ background: "#2b2b2b" }}
     >
       <g ref={gRef}>
-        <TreeLinks links={visibleLinks} />
-        {visibleNodes.map((node) => (
+        <TreeLinks links={links} />
+        {nodes.map(node => (
           <TreeNode
             key={node.id}
             node={node}
@@ -171,11 +142,12 @@ useEffect(() => {
 
 function getSubtreeBounds(nodes: PositionedNode[], rootId: string) {
   const subtree = nodes.filter(
-    (n) => n.id === rootId || n.parentId === rootId
+    n => n.id === rootId || n.parentId === rootId
   )
 
-  const xs = subtree.map((n) => n.x)
-  const ys = subtree.map((n) => n.y)
+  // Vertical layout: node.x is horizontal position, node.y is vertical (depth) position
+  const xs = subtree.map(n => n.x)
+  const ys = subtree.map(n => n.y)
 
   return {
     minX: Math.min(...xs),
@@ -190,8 +162,9 @@ function fitBounds(
   viewport: { width: number; height: number },
   padding = 100
 ) {
-  const w = bounds.maxY - bounds.minY
-  const h = bounds.maxX - bounds.minX
+  // Vertical layout: width spans the horizontal axis (X), height spans vertical axis (Y)
+  const w = bounds.maxX - bounds.minX
+  const h = bounds.maxY - bounds.minY
 
   const scale = Math.min(
     viewport.width / (w + padding),
@@ -199,10 +172,8 @@ function fitBounds(
     1.5
   )
 
-  const x =
-    viewport.width / 2 - scale * ((bounds.minY + bounds.maxY) / 2)
-  const y =
-    viewport.height / 2 - scale * ((bounds.minX + bounds.maxX) / 2)
+  const x = viewport.width / 2 - scale * ((bounds.minX + bounds.maxX) / 2)
+  const y = viewport.height / 2 - scale * ((bounds.minY + bounds.maxY) / 2)
 
   return d3.zoomIdentity.translate(x, y).scale(scale)
 }
