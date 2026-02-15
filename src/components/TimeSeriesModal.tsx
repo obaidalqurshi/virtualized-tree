@@ -37,7 +37,7 @@ export function TimeSeriesModal({
             right: 0,
             width: 500,
             height: '100vh',
-            bgcolor: "background.paper",
+            bgcolor: "#1b1b1f",
             boxShadow: 24,
             p: 2,
             display: "flex",

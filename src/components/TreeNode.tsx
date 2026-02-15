@@ -16,12 +16,14 @@ export function TreeNode({
 
   const mainRadius = 24
   const toggleRadius = 10
-  const gap = 6
+  const gap = -4
   return(
     <g transform={`translate(${node.x}, ${node.y})`} >
       <circle 
-        r={24}
-        fill={isExpanded ? 'green' : 'red'}
+        r={mainRadius}
+        fill='#e04f20'
+        stroke="black"
+        strokeWidth={1.5}
         onClick={()=> {
           onSelect(node.data)
         }}
@@ -44,8 +46,7 @@ export function TreeNode({
             textAnchor="middle"
             dominantBaseline="middle"
             fill="white"
-            fontSize={14}
-            fontWeight="bold"
+            fontSize={15}
             pointerEvents="none"
           >
             {isExpanded ? "−" : "+"}

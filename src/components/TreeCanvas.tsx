@@ -23,7 +23,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     () => new Set([data.id])
   )
 
-  // Vertical layout: nodeSize [x-separation between siblings, y-separation between levels]
   const { nodes, links } = useTreeLayout(data, {
     expandedIds,
     nodeSize: [160, 100],
@@ -121,7 +120,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       ref={svgRef}
       width="100%"
       height="100vh"
-      style={{ background: "#2b2b2b" }}
+      style={{ background: "#1b1b1f" }}
     >
       <g ref={gRef}>
         <TreeLinks links={links} />
@@ -145,7 +144,6 @@ function getSubtreeBounds(nodes: PositionedNode[], rootId: string) {
     n => n.id === rootId || n.parentId === rootId
   )
 
-  // Vertical layout: node.x is horizontal position, node.y is vertical (depth) position
   const xs = subtree.map(n => n.x)
   const ys = subtree.map(n => n.y)
 
@@ -162,7 +160,6 @@ function fitBounds(
   viewport: { width: number; height: number },
   padding = 100
 ) {
-  // Vertical layout: width spans the horizontal axis (X), height spans vertical axis (Y)
   const w = bounds.maxX - bounds.minX
   const h = bounds.maxY - bounds.minY
 
