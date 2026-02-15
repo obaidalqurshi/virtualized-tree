@@ -91,19 +91,31 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
   return (
     <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
-    <Button
-        variant="contained"
-        onClick={collapseAll}
+<div
         style={{
           position: 'absolute',
           top: 20,
-          left: 20,
+          left: '50%',
+          transform: 'translateX(-50%)', 
           zIndex: 10,
-          backgroundColor: '#e04f20',
+          display: 'flex',
+          gap: '10px' 
         }}
       >
-        Collapse all
-      </Button>
+        <Button
+          variant="contained"
+          onClick={collapseAll}
+          sx={{
+            backgroundColor: '#e04f20',
+            '&:hover': { backgroundColor: '#c6441b' },
+            textTransform: 'none',
+            borderRadius: '20px',
+            px: 3,
+          }}
+        >
+          Collapse all
+        </Button>
+      </div>
     <svg
       ref={svgRef}
       width="100%"
