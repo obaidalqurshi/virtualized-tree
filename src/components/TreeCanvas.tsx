@@ -14,7 +14,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null)
   const gRef = useRef<SVGGElement | null>(null)
   const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
-
+  const treeCentered = useRef(false);
   const [viewport, setViewport] = useState({ width: 0, height: 0 })
   const [expandedIds, setExpandedIds] = useState<Set<string>>(
     () => new Set([data.id])
@@ -37,8 +37,8 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   }, [])
 
   useEffect(() => {
-    if (!svgRef.current || !gRef.current) return
-
+    if (!svgRef.current || !gRef.current || nodes.length === 0) return
+    if(treeCentered.current) return; 
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.2, 4])
@@ -65,6 +65,8 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
     d3.select(svgRef.current)
       .call(zoom.transform, initialTransform)
+
+    treeCentered.current = true;
   }, [nodes, viewport.width, viewport.height, data.id])
 
   const toggleNode = (id: string) => {
