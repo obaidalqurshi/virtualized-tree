@@ -57,7 +57,7 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
     focus.append('line')
       .attr('y1', margin.top)
       .attr('y2', height - margin.bottom)
-      .attr('stroke', 'white')
+      .attr('stroke', 'black')
       .attr('stroke-dasharray', '3,3')
 
 

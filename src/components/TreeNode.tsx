@@ -49,7 +49,7 @@ export function TreeNode({
             onToggle(node.id)
           }}
         >
-          <circle r={toggleRadius} fill="#333" />
+          <circle r={toggleRadius} fill="#4592be" />
           <text
             textAnchor="middle"
             dominantBaseline="middle"
@@ -57,7 +57,7 @@ export function TreeNode({
             fontSize={15}
             pointerEvents="none"
           >
-            {isExpanded ? "−" : "+"}
+            {isExpanded ? "--" : "+"}
           </text>
         </g>
       )}
