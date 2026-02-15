@@ -4,6 +4,8 @@ import { useTreeLayout } from "../hooks/useTreeLayout"
 import type { TreeNodeData } from "../types/tree"
 import { TreeNode } from "./TreeNode"
 import { TreeLinks } from "./TreeLinks"
+import { Button } from "@mui/material"
+
 
 interface Props {
   data: TreeNodeData
@@ -24,6 +26,10 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     expandedIds,
     nodeSize: [160, 100],
   })
+
+  const collapseAll = () => {
+    setExpandedIds(new Set([data.id]))
+  }
 
   useEffect(() => {
     if (!svgRef.current ) return
@@ -84,6 +90,20 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   }
 
   return (
+    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <Button
+        variant="contained"
+        onClick={collapseAll}
+        style={{
+          position: 'absolute',
+          top: 20,
+          left: 20,
+          zIndex: 10,
+          backgroundColor: '#e04f20',
+        }}
+      >
+        Collapse all
+      </Button>
     <svg
       ref={svgRef}
       width="100%"
@@ -103,5 +123,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
         ))}
       </g>
     </svg>
+    </div>
   )
 }
