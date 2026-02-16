@@ -25,9 +25,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     nodeSize: [160, 100],
   })
 
-  const collapseAll = () => {
-    setExpandedIds(new Set([data.id]))
-  }
 
   useEffect(() => {
     if (!svgRef.current ) return
@@ -97,7 +94,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       >
         <Button
           variant="contained"
-          onClick={collapseAll}
+          onClick={()=>setExpandedIds(new Set([data.id]))}
           sx={{
             backgroundColor: '#e04f20',
             borderRadius: '20px',
