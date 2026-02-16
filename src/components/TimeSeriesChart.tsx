@@ -44,69 +44,24 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
 
     svg.append('g')
       .attr('transform', `translate(0, ${height - margin.bottom})`)
-      .call(d3.axisBottom(x).tickFormat(d3.timeFormat('%b %d')))
+      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat('%b %d') as any) as any)
 
     svg.append('g')
       .attr('transform', `translate(${margin.left}, 0)`)
       .call(d3.axisLeft(y))
+    svg.selectAll('.dot')
+      .data(parsed)
+      .enter()
+      .append('circle')
+      .attr('cx', d => x(d.date))
+      .attr('cy', d => y(d.value))
+      .attr('r', 5)
+      .attr('fille', '#1976d2')
+      .attr('cursor', 'pointer')
+      .append('title')
+      .text(d => `Date: ${d.date.toLocaleDateString()}\nValue: ${d.value}`)
 
-
-    const focus = svg.append('g')
-      .style('display', 'none')
-
-    focus.append('line')
-      .attr('y1', margin.top)
-      .attr('y2', height - margin.bottom)
-      .attr('stroke', 'black')
-      .attr('stroke-dasharray', '3,3')
-
-
-    focus.append('circle')
-      .attr('r', 4)
-      .attr('fill', '#1976d2')
-
-    const label = focus.append('text')
-      .attr('x', 9)
-      .attr('dy', '-0.35em')
-      .style('font-size', '12px')
-      .style('fill', '#333')
-
-    const bisectDate = d3.bisector<typeof parsed[number], Date>(
-      d => d.date
-    ).left
-
-
-    svg.append('rect')
-      .attr('fill', 'none')
-      .attr('pointer-events', 'all')
-      .attr('width', width)
-      .attr('height', height)
-      .on('mouseenter', () => focus.style('display', null))
-      .on('mouseleave', () => focus.style('display', 'none'))
-      .on('mousemove', (event) => {
-        const [mx] = d3.pointer(event)
-        const date = x.invert(mx)
-
-        const i = bisectDate(parsed, date, 1)
-        const a = parsed[i - 1]
-        const b = parsed[i]
-        const d = b && date.getTime() - a.date.getTime() >
-          b.date.getTime() - date.getTime()
-          ? b
-          : a
-
-        focus.select('circle')
-          .attr('cx', x(d.date))
-          .attr('cy', y(d.value))
-
-        focus.select('line')
-          .attr('x1', x(d.date))
-          .attr('x2', x(d.date))
-
-        label
-          .attr('transform', `translate(${x(d.date)}, ${y(d.value)})`)
-          .text(d.value)
-      })
+    
 
   }, [data])
 

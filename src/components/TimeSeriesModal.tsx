@@ -1,8 +1,8 @@
 import type { TreeNodeData } from "../types/tree";
 import { TimeSeriesChart } from "./TimeSeriesChart";
-import {Modal, Box, Typography, IconButton} from '@mui/material'
-import CloseIcon from '@mui/icons-material/Close'
-import {motion} from 'motion/react'
+import {Modal, Box, Typography, IconButton} from '@mui/material';
+import CloseIcon from '@mui/icons-material/Close';
+import {motion} from 'motion/react';
 
 
 const MotionBox = motion.create(Box);
@@ -30,7 +30,7 @@ export function TimeSeriesModal({
           initial={{x:500, opacity: 0}}
           animate={{x: 0, opacity: 1}}
           exit={{ x:500, opacity:0}}
-          transition={{ type: "tween", duration: 0.3}}
+          transition={{ type: "tween", duration: 0.7}}
           sx={{
             position: 'absolute',
             top: 0,
