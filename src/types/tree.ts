@@ -13,8 +13,8 @@ export interface TimePoint {
   export interface PositionedNode {
     id: string
     name: string
-    x: number
-    y: number
+    x: number | undefined
+    y: number | undefined
     depth: number
     parentId?: string
     data: TreeNodeData

@@ -25,14 +25,14 @@ export function TreeNode({
     if (!gRef.current) return
 
     gRef.current.style.transition =
-      "transform 300ms cubic-bezier(0.4, 0, 0.2, 1)"
+      "transform 900ms cubic-bezier(0.4, 0, 0.2, 1)"
 
     gRef.current.style.transform =
       `translate(${node.x}px, ${node.y}px)`
   }, [node.x, node.y])
 
 const history = (node.data.timeSeries || [])
-const latestValue = history[0]?.value ?? "N/A"
+const latestValue = history[history.length - 1]?.value ?? "N/A"
 
 const tooltip = (
   <Box sx={{ p: 0.5 }}>
@@ -59,7 +59,7 @@ const tooltip = (
     <Tooltip 
       title={tooltip} 
       arrow 
-      placement="top"
+      placement="left"
 
     >
       <g cursor="pointer" onClick={() => onSelect(node.data)}>
@@ -80,8 +80,7 @@ const tooltip = (
       <g
         transform={`translate(0, ${mainRadius + gap + toggleRadius})`}
         cursor="pointer"
-        onClick={(e) => {
-          e.stopPropagation()
+        onClick={() => {
           onToggle(node.id)
         }}
       >

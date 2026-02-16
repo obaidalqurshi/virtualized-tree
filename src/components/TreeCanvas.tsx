@@ -66,7 +66,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     if (!rootNode) return
 
     const initialTransform = d3.zoomIdentity
-      .translate(svgWidth / 2 - rootNode.x, svgHeight / 2 - rootNode.y)
+      .translate(svgWidth / 2 , svgHeight / 2 )
       .scale(1)
 
     d3.select(svgRef.current)
