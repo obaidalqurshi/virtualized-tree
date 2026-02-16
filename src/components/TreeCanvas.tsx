@@ -15,8 +15,6 @@ interface Props {
 export function TreeCanvas({ data, onSelectNode }: Props) {
   const svgRef = useRef<SVGSVGElement | null>(null)
   const gRef = useRef<SVGGElement | null>(null)
-  const zoomRef = useRef<d3.ZoomBehavior<SVGSVGElement, unknown> | null>(null)
-  const treeCentered = useRef(false);
   const [viewport, setViewport] = useState({ width: 0, height: 0 })
   const [expandedIds, setExpandedIds] = useState<Set<string>>(
     () => new Set([data.id])
@@ -44,7 +42,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
   useEffect(() => {
     if (!svgRef.current || !gRef.current || nodes.length === 0) return
-    if(treeCentered.current) return; 
     const zoom = d3
       .zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.2, 4])
@@ -56,7 +53,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
       })
 
-    zoomRef.current = zoom
     d3.select(svgRef.current).call(zoom)
 
     const svgWidth = viewport.width || svgRef.current.clientWidth
@@ -72,7 +68,6 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     d3.select(svgRef.current)
       .call(zoom.transform, initialTransform)
 
-    treeCentered.current = true;
   }, [nodes, viewport.width, viewport.height, data.id])
 
   const toggleNode = (id: string) => {
@@ -90,16 +85,14 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   }
 
   return (
-    <div style={{ position: 'relative', width: '100%', height: '100vh' }}>
+    <div >
 <div
         style={{
           position: 'absolute',
           top: 20,
           left: '50%',
           transform: 'translateX(-50%)', 
-          zIndex: 10,
           display: 'flex',
-          gap: '10px' 
         }}
       >
         <Button
@@ -107,10 +100,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
           onClick={collapseAll}
           sx={{
             backgroundColor: '#e04f20',
-            '&:hover': { backgroundColor: '#c6441b' },
-            textTransform: 'none',
             borderRadius: '20px',
-            px: 3,
           }}
         >
           Collapse all
