@@ -24,7 +24,30 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     nodeSize: [160, 100],
   })
 
-
+  useEffect(() => {
+    if (!svgRef.current || !gRef.current || nodes.length === 0) return
+  
+    const zoom = d3.zoom<SVGSVGElement, unknown>()
+      .scaleExtent([0.2, 4])
+      .on("zoom", (event) => {
+        d3.select(gRef.current!).attr("transform", event.transform)
+      })
+  
+    const svg = d3.select(svgRef.current);
+    svg.call(zoom);
+  
+    const width = svgRef.current.clientWidth;
+    const height = svgRef.current.clientHeight;
+  
+  
+    const initialTransform = d3.zoomIdentity
+      .translate(width / 2, height / 2) 
+      .scale(1);
+  
+  
+    svg.call(zoom.transform, initialTransform);
+  
+  }, [nodes.length]);
 
 
   useEffect(() => {
@@ -86,7 +109,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       height="100vh"
       style={{ background: "#1b1b1f" }}
     >
-      <g ref={gRef}>
+      <g ref={gRef} >
         <TreeLinks links={links} />
         {nodes.map(node => (
           <TreeNode
