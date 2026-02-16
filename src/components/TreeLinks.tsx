@@ -4,7 +4,7 @@ import type { TreeNodeData } from "../types/tree"
 export function TreeLinks({
   links,
 }: {
-  links: d3.HierarchyPointLink<TreeNodeData>[]
+  links: d3.HierarchyLink<TreeNodeData>[]
 }) {
   return (
     <g fill="none" stroke="black" strokeWidth={1.5}>

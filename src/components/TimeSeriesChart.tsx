@@ -43,7 +43,9 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
 
     svg.append('g')
       .attr('transform', `translate(0, ${height - margin.bottom})`)
-      .call(d3.axisBottom(x).ticks(5).tickFormat(d3.timeFormat('%b %d') as any) as any)
+      .call(d3.axisBottom(x)
+        .tickValues(parsed.map(d => d.date))
+        .tickFormat(d3.timeFormat('%b %d') as any) as any)
 
     svg.append('g')
       .attr('transform', `translate(${margin.left}, 0)`)

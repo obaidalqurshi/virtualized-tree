@@ -17,9 +17,6 @@ export function TreeNode({
 }: Props) {
   const gRef = useRef<SVGGElement | null>(null)
 
-  const mainRadius = 24
-  const toggleRadius = 10
-  const gap = -4
 
   useEffect(() => {
     if (!gRef.current) return
@@ -63,7 +60,7 @@ const tooltip = (
 
     >
       <g cursor="pointer" onClick={() => onSelect(node.data)}>
-        <circle r={mainRadius} fill="#e04f20" stroke="black" strokeWidth={1.5} />
+        <circle r={24} fill="#e04f20" stroke="black" strokeWidth={1.5} />
         <text
           textAnchor="middle"
           dominantBaseline="middle"
@@ -78,13 +75,13 @@ const tooltip = (
 
     {!!node.data.children?.length && (
       <g
-        transform={`translate(0, ${mainRadius + gap + toggleRadius})`}
+        transform={`translate(0, 20)`}
         cursor="pointer"
         onClick={() => {
           onToggle(node.id)
         }}
       >
-        <circle r={toggleRadius} fill="#4592be" />
+        <circle r={10} fill="#4592be" />
         <text
           textAnchor="middle"
           dominantBaseline="middle"
