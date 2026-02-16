@@ -33,7 +33,6 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
       .x(d => x(d.date))
       .y0(y(0))
       .y1(d => y(d.value))
-      .curve(d3.curveMonotoneX)
 
     svg.append('path')
       .datum(parsed)
@@ -51,8 +50,7 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
       .call(d3.axisLeft(y))
     svg.selectAll('.dot')
       .data(parsed)
-      .enter()
-      .append('circle')
+      .join('circle')
       .attr('cx', d => x(d.date))
       .attr('cy', d => y(d.value))
       .attr('r', 5)
