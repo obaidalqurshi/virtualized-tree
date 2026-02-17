@@ -19,13 +19,10 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
     () => new Set([data.id])
   )
 
-  const { nodes, links } = useTreeLayout(data, {
-    expandedIds,
-    nodeSize: [160, 100],
-  })
+  const { nodes, links } = useTreeLayout(data,expandedIds,)
 
   useEffect(() => {
-    if (!svgRef.current || !gRef.current || nodes.length === 0) return
+    if (!svgRef.current || !gRef.current) return
   
     const zoom = d3.zoom<SVGSVGElement, unknown>()
       .scaleExtent([0.2, 4])
@@ -47,7 +44,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
   
     svg.call(zoom.transform, initialTransform);
   
-  }, [nodes.length]);
+  }, [data]);
 
 
   useEffect(() => {
@@ -65,14 +62,12 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
     d3.select(svgRef.current).call(zoom)
 
-  }, [nodes, data.id])
+  })
 
   const toggleNode = (id: string) => {
     setExpandedIds(prev => {
       const next = new Set(prev)
-      const isExpanding = !next.has(id)
-
-      if (isExpanding) {
+      if (!next.has(id)) {
         next.add(id)
       } else {
         next.delete(id)
@@ -100,7 +95,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
             borderRadius: '20px',
           }}
         >
-          Collapse all
+          Collapse
         </Button>
       </div>
     <svg

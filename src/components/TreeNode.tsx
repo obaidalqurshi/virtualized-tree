@@ -42,9 +42,9 @@ const tooltip = (
     
     {history.length > 0 && (
       <Box>
-        {history.map((pt, i) => (
+        {history.map((time, i) => (
           <Typography key={i} variant="caption" display="block" sx={{ color: 'rgba(255,255,255,0.7)' }}>
-            {pt.date}: <strong>{pt.value}</strong>
+            {time.date}: <strong>{time.value}</strong>
           </Typography>
         ))}
       </Box>
