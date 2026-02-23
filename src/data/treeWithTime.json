@@ -53,7 +53,17 @@
                   { "date": "2024-01-04", "value": 18 },
                   { "date": "2024-01-05", "value": 60 }
                 ],
-                "children": []
+                "children": [{
+                  "id": "A1b1",
+                  "name": "Item A1b1",
+                  "timeSeries": [
+                    { "date": "2024-01-01", "value": 15 },
+                    { "date": "2024-01-02", "value": 16 },
+                    { "date": "2024-01-03", "value": 17 },
+                    { "date": "2024-01-04", "value": 18 },
+                    { "date": "2024-01-05", "value": 60 }],
+                    "children":[]
+                }]
               }
             ]
           },

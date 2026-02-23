@@ -15,21 +15,16 @@ export function TreeLinks({
         const tx = link.target.x
         const ty = link.target.y
 
-        const stroke = link.target.data.timeSeries[link.target.data.timeSeries.length - 1].value > 50 || link.source.data.timeSeries[link.source.data.timeSeries.length - 1].value > 50 ? "red" : "blue"
+        const stroke = link.target.data.timeSeries[link.target.data.timeSeries.length - 1].value > 50 && link.source.data.timeSeries[link.source.data.timeSeries.length - 1].value > 50 ? "red" : "blue"
 
 
         const path = `
-          M ${sx},${sy}
-          L ${sx},${ty}
-        `
-        const path2 = `
-          M ${sx},${ty}
-          L ${tx},${ty}
-        `
+        M ${sx},${sy}
+        L ${sx},${(sy + ty) / 2} ${tx},${(sy + ty) / 2} ${tx},${ty}
+      `;
 
         return (<>
-        <path key={i} d={path} stroke='black' />
-        <path key={i} d={path2} stroke={stroke} />
+        <path key={i} d={path} stroke={stroke} />
         </>)
       })}
     </g>
