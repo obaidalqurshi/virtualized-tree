@@ -66,6 +66,7 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
       return next;
     });
   };
+  console.log('links: ', links)
 
   return (
     <div>

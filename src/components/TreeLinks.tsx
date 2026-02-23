@@ -7,12 +7,16 @@ export function TreeLinks({
   links: d3.HierarchyLink<TreeNodeData>[]
 }) {
   return (
-    <g fill="none" stroke="black" strokeWidth={1.5}>
+    
+    <g fill="none" strokeWidth={1.5}>
       {links.map((link, i) => {
         const sx = link.source.x
         const sy = link.source.y
         const tx = link.target.x
         const ty = link.target.y
+
+        const stroke = link.target.data.timeSeries[link.target.data.timeSeries.length - 1].value > 50 || link.source.data.timeSeries[link.source.data.timeSeries.length - 1].value > 50 ? "red" : "blue"
+
 
         const path = `
           M ${sx},${sy}
@@ -20,7 +24,7 @@ export function TreeLinks({
           L ${tx},${ty}
         `
 
-        return <path key={i} d={path} />
+        return <path key={i} d={path} stroke={stroke} />
       })}
     </g>
   )
