@@ -21,10 +21,16 @@ export function TreeLinks({
         const path = `
           M ${sx},${sy}
           L ${sx},${ty}
+        `
+        const path2 = `
+          M ${sx},${ty}
           L ${tx},${ty}
         `
 
-        return <path key={i} d={path} stroke={stroke} />
+        return (<>
+        <path key={i} d={path} stroke='black' />
+        <path key={i} d={path2} stroke={stroke} />
+        </>)
       })}
     </g>
   )
