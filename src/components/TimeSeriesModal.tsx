@@ -103,9 +103,8 @@ export function TimeSeriesModal({
             </Box>
           <Box flex={1} mt={1}>
             <TimeSeriesChart data={node.timeSeries} />
-            <Button label="add child" icon="pi pi-external-link" onClick={() => setVisible(true)}/>
-            <Dialog header={`Add child to ${node.name}`} position="bottom" visible={visible} className="
-            bg-white pl-1 font-bold flex flex-col w-170 h-120
+            <Button label="add child" icon="pi pi-external-link" className="p-1 space-x-1 border rounded-2xl" onClick={() => setVisible(true)}/>
+            <Dialog header={`Add child to ${node.name}`} position="bottom" visible={visible} className="pl-1 font-bold flex flex-col w-170 h-80
             "  onHide={() => {if (!visible) return; setVisible(false); }} appendTo="self">
               <form className="font-medium pl-1 pr-2 align-middle flex flex-col gap-2 mt-1" onSubmit={handleSubmit(onSubmit)}>
                 <InputText className="border rounded-2xl p-1" placeholder="Enter a unique id" {...register('id')} />
@@ -123,7 +122,7 @@ export function TimeSeriesModal({
                   onChange={(e) => field.onChange(e.value)}
                   />
                 )} />
-                <Button label="add child" icon="pi pi-external-link" className="pl-2 rounded-2xl" type="submit"/>              
+                <Button label="add child" icon="pi pi-external-link" className="pl-2 rounded-2xl" style={{ backgroundColor: "#64b5f6"}} type="submit"/>              
               </form>
             </Dialog>
           </Box>
