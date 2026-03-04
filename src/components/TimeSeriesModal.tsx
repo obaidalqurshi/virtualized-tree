@@ -3,6 +3,9 @@ import { TimeSeriesChart } from "./TimeSeriesChart";
 import {Modal, Box, Typography, IconButton} from '@mui/material';
 import CloseIcon from '@mui/icons-material/Close';
 import {motion} from 'motion/react';
+import { Button } from "primereact/button";
+import { Dialog } from "primereact/dialog";
+import { useState } from "react";
 
 
 const MotionBox = motion.create(Box);
@@ -15,6 +18,7 @@ export function TimeSeriesModal({
   node: TreeNodeData
   onClose: ()=>void
 }){
+  const [visible, setVisible] = useState(false)
   return(
     <Modal
       open={true}
@@ -52,6 +56,14 @@ export function TimeSeriesModal({
             </Box>
           <Box flex={1} mt={1}>
             <TimeSeriesChart data={node.timeSeries} />
+            <Button label="add child" icon="pi pi-external-link" onClick={() => setVisible(true)}/>
+            <Dialog header={`Add child to ${node.name}`} position="bottom" visible={visible} className="
+            bg-gray-500 pl-1 font-bold
+            " style={{ width: '50vw' }} onHide={() => {if (!visible) return; setVisible(false); }} appendTo="self">
+              <form>
+                
+              </form>
+            </Dialog>
           </Box>
           </MotionBox>
 
