@@ -9,6 +9,7 @@ import { useState } from "react";
 import { Controller, useForm, type SubmitHandler } from "react-hook-form";
 import { InputText } from "primereact/inputtext";
 import { Calendar } from "primereact/calendar";
+import { useTreeStore } from "../store/useTreeStore";
 
 
 const MotionBox = motion.create(Box);
@@ -36,7 +37,9 @@ export function TimeSeriesModal({
     watch,
     control,
     formState: { errors },
-  } = useForm<Inputs>()
+  } = useForm<Inputs>();
+  const addChild = useTreeStore((state) => state.addChild);
+  const deleteNode = useTreeStore((state) => state.deleteNode);
   const onSubmit: SubmitHandler<Inputs> = (formData) =>{ 
     const newChild: TreeNodeData = {
       id: formData.id,
@@ -47,22 +50,7 @@ export function TimeSeriesModal({
       })),
       children: []
     };
-    const updateTree = (root: TreeNodeData): TreeNodeData => {
-      if (root.id === node.id) {
-        return {
-          ...root,
-          children: [...(root.children || []), newChild]
-        };
-      }
-      if (root.children) {
-        return {
-          ...root,
-          children: root.children.map(updateTree)
-        };
-      }
-      return root;
-    };
-    setData(updateTree(nodeData));
+    addChild(node.id, newChild);
   setVisible(false);
   onClose();
   }
@@ -103,7 +91,10 @@ export function TimeSeriesModal({
             </Box>
           <Box flex={1} mt={1}>
             <TimeSeriesChart data={node.timeSeries} />
-            <Button label="add child" icon="pi pi-external-link" className="p-1 space-x-1 border rounded-2xl" onClick={() => setVisible(true)}/>
+            <div className="gap-2 flex flex-row">
+            <Button label="add child" icon="pi pi-external-link" className="p-1 space-x-1 border rounded-2xl bg-green-500" onClick={() => setVisible(true)}/>
+            <Button label="Delete Node" icon="pi pi-trash" className="p-1 space-x-1 border rounded-2xl bg-red-500" onClick={() => deleteNode(node.id)}/>
+            </div>
             <Dialog header={`Add child to ${node.name}`} position="bottom" visible={visible} className="pl-1 font-bold flex flex-col w-170 h-80
             "  onHide={() => {if (!visible) return; setVisible(false); }} appendTo="self">
               <form className="font-medium pl-1 pr-2 align-middle flex flex-col gap-2 mt-1" onSubmit={handleSubmit(onSubmit)}>

@@ -3,10 +3,11 @@ import treeData from './data/treeWithTime.json'
 import { TreeCanvas } from './components/TreeCanvas'
 import type { TreeNodeData } from './types/tree'
 import { TimeSeriesModal } from './components/TimeSeriesModal'
+import { useTreeStore } from './store/useTreeStore'
 
 export default function App(){
   const [selectedNode, setSelectedNode] = useState<TreeNodeData |null>(null);
-  const [data, setData] = useState<TreeNodeData>(treeData);
+  const data = useTreeStore((state) => state.data);
 
   console.log('data: ', data)
   return(
@@ -14,7 +15,7 @@ export default function App(){
     <TreeCanvas data={data} onSelectNode={setSelectedNode} />
 
     {selectedNode &&(
-      <TimeSeriesModal node={selectedNode} nodeData={data} setData={setData} onClose={()=> setSelectedNode(null)} />
+      <TimeSeriesModal node={selectedNode} onClose={()=> setSelectedNode(null)} />
     )}
     </>
   )
