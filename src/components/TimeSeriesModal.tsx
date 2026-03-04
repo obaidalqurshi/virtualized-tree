@@ -21,10 +21,12 @@ type Inputs = {
 }
 
 export function TimeSeriesModal({
-  node, 
+  node,
+  setData,
+  nodeData,
   onClose
 }:{
-  node: TreeNodeData
+  node: TreeNodeData,
   onClose: ()=>void
 }){
   const [visible, setVisible] = useState(false);
@@ -35,11 +37,34 @@ export function TimeSeriesModal({
     control,
     formState: { errors },
   } = useForm<Inputs>()
-  const onSubmit: SubmitHandler<Inputs> = (data) =>{ 
-    console.log("node name: ", data.name);
-    console.log("node Id: ", data.id);
-    console.log("node timeSeries", data.timeSeries.toLocaleString())
-    console.log("node parent: ", node.id)
+  const onSubmit: SubmitHandler<Inputs> = (formData) =>{ 
+    const newChild: TreeNodeData = {
+      id: formData.id,
+      name: formData.name,
+      timeSeries: formData.timeSeries.map(d => ({
+        date: d.toISOString().split('T')[0],
+        value: Math.floor(Math.random() * 100)
+      })),
+      children: []
+    };
+    const updateTree = (root: TreeNodeData): TreeNodeData => {
+      if (root.id === node.id) {
+        return {
+          ...root,
+          children: [...(root.children || []), newChild]
+        };
+      }
+      if (root.children) {
+        return {
+          ...root,
+          children: root.children.map(updateTree)
+        };
+      }
+      return root;
+    };
+    setData(updateTree(nodeData));
+  setVisible(false);
+  onClose();
   }
   return(
     <Modal
@@ -82,7 +107,7 @@ export function TimeSeriesModal({
             <Dialog header={`Add child to ${node.name}`} position="bottom" visible={visible} className="
             bg-white pl-1 font-bold flex flex-col w-170 h-120
             "  onHide={() => {if (!visible) return; setVisible(false); }} appendTo="self">
-              <form className="font-medium pl-1 flex flex-col gap-2 mt-1" onSubmit={handleSubmit(onSubmit)}>
+              <form className="font-medium pl-1 pr-2 align-middle flex flex-col gap-2 mt-1" onSubmit={handleSubmit(onSubmit)}>
                 <InputText className="border rounded-2xl p-1" placeholder="Enter a unique id" {...register('id')} />
                 <InputText className="border rounded-2xl p-1" placeholder="Enter a node name" {...register('name')} />
                 <Controller 
@@ -98,7 +123,7 @@ export function TimeSeriesModal({
                   onChange={(e) => field.onChange(e.value)}
                   />
                 )} />
-                <Button label="add child" icon="pi pi-external-link" type="submit"/>              
+                <Button label="add child" icon="pi pi-external-link" className="pl-2 rounded-2xl" type="submit"/>              
               </form>
             </Dialog>
           </Box>

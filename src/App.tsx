@@ -6,12 +6,15 @@ import { TimeSeriesModal } from './components/TimeSeriesModal'
 
 export default function App(){
   const [selectedNode, setSelectedNode] = useState<TreeNodeData |null>(null);
+  const [data, setData] = useState<TreeNodeData>(treeData);
+
+  console.log('data: ', data)
   return(
     <>
-    <TreeCanvas data={treeData} onSelectNode={setSelectedNode} />
+    <TreeCanvas data={data} onSelectNode={setSelectedNode} />
 
     {selectedNode &&(
-      <TimeSeriesModal node={selectedNode} onClose={()=> setSelectedNode(null)} />
+      <TimeSeriesModal node={selectedNode} nodeData={data} setData={setData} onClose={()=> setSelectedNode(null)} />
     )}
     </>
   )
