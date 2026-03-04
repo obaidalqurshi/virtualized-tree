@@ -20,6 +20,10 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
     const svg = d3.select(ref.current)
     svg.selectAll('*').remove()
 
+
+    const zoomGroup = svg.append('g').attr('class', 'zoom-group');
+
+
     const x = d3.scaleTime()
       .domain(d3.extent(parsed, d => d.date) as [Date, Date])
       .range([margin.left, width - margin.right])
@@ -29,28 +33,27 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
       .nice()
       .range([height - margin.bottom, margin.top])
 
+      zoomGroup.append('g')
+        .attr('transform', `translate(0,${height - margin.bottom})`)
+        .call(d3.axisBottom(x).tickValues(parsed.map(d => d.date))
+        .tickFormat(d3.timeFormat('%b %d') as any) as any);
+
+      zoomGroup.append('g')
+        .attr('transform', `translate(${margin.left}, 0)`)
+        .call(d3.axisLeft(y))
     const area = d3.area<typeof parsed[number]>()
       .x(d => x(d.date))
       .y0(y(0))
       .y1(d => y(d.value))
 
-    svg.append('path')
+    zoomGroup.append('path')
       .datum(parsed)
       .attr('fill', 'rgba(100, 181, 246, 0.35)')
       .attr('stroke', '#64b5f6')
       .attr('stroke-width', 2)
-      .attr('d', area)
+      .attr("d", area)
 
-    svg.append('g')
-      .attr('transform', `translate(0, ${height - margin.bottom})`)
-      .call(d3.axisBottom(x)
-        .tickValues(parsed.map(d => d.date))
-        .tickFormat(d3.timeFormat('%b %d') as any) as any)
-
-    svg.append('g')
-      .attr('transform', `translate(${margin.left}, 0)`)
-      .call(d3.axisLeft(y))
-    svg.selectAll('.dot')
+    zoomGroup.selectAll('.dot')
       .data(parsed)
       .join('circle')
       .attr('cx', d => x(d.date))
@@ -61,7 +64,13 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
       .append('title')
       .text(d => `Date: ${d.date.toLocaleDateString()}\nValue: ${d.value}`)
 
+      const zoom =  d3.zoom<SVGSVGElement, unknown>()
+        .scaleExtent([0.5, 5])
+        .on("zoom", (event)=>{
+          zoomGroup.attr('transform', event.transform)
+        })
     
+        svg.call(zoom)
 
   }, [data])
 
