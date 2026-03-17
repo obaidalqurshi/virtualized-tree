@@ -2,17 +2,28 @@ import * as d3 from "d3";
 import { useMemo } from "react";
 import type { TreeNodeData, PositionedNode } from "../types/tree";
 
-
-
-export function useTreeLayout(
-  data: TreeNodeData, expandedIds: Set<string>
-) {
+export function useTreeLayout(data: TreeNodeData, expandedIds: Set<string>) {
   return useMemo(() => {
     const root = d3.hierarchy<TreeNodeData>(data, (d) => {
       return expandedIds.has(d.id) ? d.children : null;
     });
-    const treeLayout = d3.tree<TreeNodeData>().nodeSize([160,120]);
+
+    const treeLayout = d3.tree<TreeNodeData>().nodeSize([85, 145]);
     treeLayout(root);
+
+
+    root.each((node) => {
+      if (node.children && node.children.length > 0) {
+        const firstChild = node.children[0];
+        const offset = node.x - firstChild.x;
+
+        node.children.forEach((child) => {
+          child.each((descendant) => {
+            descendant.x += offset;
+          });
+        });
+      }
+    });
 
     const nodes: PositionedNode[] = [];
     root.each((node) => {

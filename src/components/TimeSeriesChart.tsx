@@ -59,7 +59,7 @@ export function TimeSeriesChart({ data }: { data: TimePoint[] }) {
       .attr('cx', d => x(d.date))
       .attr('cy', d => y(d.value))
       .attr('r', 5)
-      .attr('fille', '#1976d2')
+      .attr('fill', '#1976d2')
       .attr('cursor', 'pointer')
       .append('title')
       .text(d => `Date: ${d.date.toLocaleDateString()}\nValue: ${d.value}`)

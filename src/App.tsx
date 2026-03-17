@@ -9,7 +9,6 @@ export default function App(){
   const [selectedNode, setSelectedNode] = useState<TreeNodeData |null>(null);
   const data = useTreeStore((state) => state.data);
 
-  console.log('data: ', data)
   return(
     <>
     <TreeCanvas data={data} onSelectNode={setSelectedNode} />
