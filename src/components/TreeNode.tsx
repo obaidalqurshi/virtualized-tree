@@ -1,11 +1,11 @@
 import { useEffect, useRef } from "react"
 import type { PositionedNode } from "../types/tree"
 import { Tooltip, Box, Typography } from "@mui/material"
-import ExeIcon from "./ExeIcon"
-import GearsIcon from "./GearsIcon"
-import FileIcon from "./FileIcon"
-import ShieldIcon from "./ShieldIcon"
-import GearIcon from "./GearIcon"
+import ExeIcon from "./icons/ExeIcon"
+import GearsIcon from "./icons/GearsIcon"
+import FileIcon from "./icons/FileIcon"
+import ShieldIcon from "./icons/ShieldIcon"
+import GearIcon from "./icons/GearIcon"
 
 interface Props {
   node: PositionedNode
