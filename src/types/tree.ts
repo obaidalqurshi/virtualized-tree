@@ -5,7 +5,10 @@ export interface TimePoint {
   
   export interface TreeNodeData {
     id: string
-    name: string
+    pid: number,
+    name: string,
+    status: string,
+    icons: string[],
     timeSeries: TimePoint[]
     children: TreeNodeData[]
   }
