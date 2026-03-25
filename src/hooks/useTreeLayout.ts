@@ -8,10 +8,10 @@ export function useTreeLayout(data: TreeNodeData, expandedIds: Set<string>) {
       return expandedIds.has(d.id) ? d.children : null;
     });
 
-    const treeLayout = d3.tree<TreeNodeData>().nodeSize([85, 145]);
+    const treeLayout = d3.tree<TreeNodeData>().nodeSize([95, 125]);
     treeLayout(root);
 
-
+// Applying offset to the nodes to make the first child appear in the same line as its parent
     root.each((node) => {
       if (node.children && node.children.length > 0) {
         const firstChild = node.children[0];

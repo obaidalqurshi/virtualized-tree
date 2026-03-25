@@ -29,7 +29,7 @@
         {
           "id": "A1",
           "pid": 5465,
-          "name": "Subcategory A1",
+          "name": "choice.exe",
           "status": "pending",
           "icons": ["exe", "gears"],
           "timeSeries": [
@@ -43,7 +43,7 @@
             {
               "id": "A1a",
               "pid": 6511,
-              "name": "Item A1a",
+              "name": "icacls.exe",
               "status": "pending",
               "icons": ["exe", "file", "gears"],
               "timeSeries": [
@@ -72,7 +72,7 @@
                 {
                   "id": "A1b1",
                   "pid": 6456,
-                  "name": "Item A1b1",
+                  "name": "takeown.exe",
                   "status": "pending",
                   "icons": ["exe"],
                   "timeSeries": [

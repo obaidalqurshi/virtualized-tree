@@ -69,6 +69,22 @@ export function TreeNode({ node, isExpanded, onToggle, onSelect }: Props) {
         </g>
       </Tooltip>
 
+      {/* {node.id === "root" && (
+        <g transform={`translate(-22, 0.5)`} cursor="pointer">
+          <circle r={5.5} fill="#fff" stroke="#4592be" />
+          <g transform="translate(0,0.4)">
+            <text
+              textAnchor="middle"
+              dominantBaseline="middle"
+              fill="#4592be"
+              fontSize={11}
+              pointerEvents="none"
+            >
+              +
+            </text>
+          </g>
+        </g>
+      )} */}
       {!!node.data.children?.length && (
         <g
           transform={`translate(22, 0.5)`}
@@ -78,15 +94,17 @@ export function TreeNode({ node, isExpanded, onToggle, onSelect }: Props) {
           }}
         >
           <circle r={5.5} fill="#fff" stroke="#4592be" />
+          <g transform="translate(0,0.4)">
           <text
             textAnchor="middle"
             dominantBaseline="middle"
             fill="#4592be"
-            fontSize={15}
+            fontSize={11}
             pointerEvents="none"
           >
-            {isExpanded ? "-" : "+"}
+            {isExpanded ? "–" : "+"}
           </text>
+          </g>
         </g>
       )}
       <g transform="translate(0,30)">

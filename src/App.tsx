@@ -1,5 +1,4 @@
 import {useState} from 'react'
-import treeData from './data/treeWithTime.json'
 import { TreeCanvas } from './components/TreeCanvas'
 import type { TreeNodeData } from './types/tree'
 import { TimeSeriesModal } from './components/TimeSeriesModal'
