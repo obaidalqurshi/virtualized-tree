@@ -50,18 +50,11 @@ export function TreeCanvas({ data, onSelectNode }: Props) {
 
     const svg = d3.select(svgRef.current);
     const { width, height } = svgRef.current.getBoundingClientRect();
-
-    const currentTransform = d3.zoomTransform(svg.node()!);
-    const currentScale = currentTransform.k;
-
-    const nextScale = Math.min(currentScale * 1.1, 2);
-
-    const tx = width / 2 - node.y * nextScale;
-    const ty = height / 2 - node.x * nextScale;
+    const tx = width / 2 - node.y;
+    const ty = height / 2 - node.x;
 
     const transform = d3.zoomIdentity
       .translate(tx, ty)
-      .scale(nextScale);
 
     svg
       .transition()
